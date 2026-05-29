@@ -1812,6 +1812,209 @@ a:hover {
   display: block;
 }
 
+/* Clippings Carousel Section */
+.clippings-section {
+  position: relative;
+  overflow: clip;
+  padding: 3rem 0 4rem;
+  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-raised) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.clippings-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .clippings-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.clippings-header-left {
+  max-width: 620px;
+}
+
+.clippings-header-left h2 {
+  margin: 0.5rem 0 0.75rem;
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.clippings-header-left p {
+  margin: 0;
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.eyebrow-alt {
+  background: rgba(255, 122, 89, 0.1) !important;
+  color: var(--coral) !important;
+  border-color: rgba(255, 122, 89, 0.2) !important;
+}
+
+.clippings-controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.carousel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-btn:hover {
+  background: var(--coral);
+  color: #FFFFFF;
+  border-color: var(--coral);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(255, 122, 89, 0.25);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
+}
+
+/* Track & Scrolling */
+.clippings-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 0.25rem 1.5rem;
+  scrollbar-width: none; /* Hide scrollbars Firefox */
+  -ms-overflow-style: none;  /* Hide scrollbars IE */
+}
+
+.clippings-track::-webkit-scrollbar {
+  display: none; /* Hide scrollbars Chrome/Safari */
+}
+
+/* Clipping Cards */
+.clipping-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.75rem;
+  border-radius: 16px;
+  background: rgba(25, 18, 30, 0.55);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 480px) {
+  .clipping-card {
+    flex: 0 0 340px;
+  }
+}
+
+@media (min-width: 768px) {
+  .clipping-card {
+    flex: 0 0 380px;
+  }
+}
+
+.clipping-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 122, 89, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 12px 24px rgba(255, 122, 89, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.clipping-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.clipping-publisher-logo {
+  max-height: 24px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.clipping-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--coral);
+  background: rgba(255, 122, 89, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 122, 89, 0.15);
+}
+
+.clipping-headline {
+  margin: 0 0 1rem;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.clipping-text {
+  margin: 0 0 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  flex-grow: 1;
+}
+
+.clipping-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding-top: 1rem;
+}
+
+.clipping-artist {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.clipping-link {
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.clipping-card:hover .clipping-link {
+  color: var(--coral);
+}
+
 /* Plan Deck Combos (using the same deck styles) */
 .plan-deck-combos {
   display: grid;

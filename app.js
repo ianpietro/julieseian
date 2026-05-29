@@ -124,5 +124,34 @@
         form.reset();
       }, 2200);
     });
+  // Clippings Carousel Navigation
+  var track = document.getElementById("clippings-track");
+  var btnPrev = document.querySelector(".clippings-controls .btn-prev");
+  var btnNext = document.querySelector(".clippings-controls .btn-next");
+
+  if (track && btnPrev && btnNext) {
+    btnPrev.addEventListener("click", function () {
+      var card = track.querySelector(".clipping-card");
+      if (card) {
+        var cardWidth = card.getBoundingClientRect().width;
+        var gap = 24; // matches 1.5rem gap (1.5 * 16px)
+        track.scrollBy({
+          left: -(cardWidth + gap),
+          behavior: "smooth"
+        });
+      }
+    });
+
+    btnNext.addEventListener("click", function () {
+      var card = track.querySelector(".clipping-card");
+      if (card) {
+        var cardWidth = card.getBoundingClientRect().width;
+        var gap = 24; // matches 1.5rem gap (1.5 * 16px)
+        track.scrollBy({
+          left: cardWidth + gap,
+          behavior: "smooth"
+        });
+      }
+    });
   }
 })();
