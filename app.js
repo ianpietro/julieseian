@@ -124,34 +124,44 @@
         form.reset();
       }, 2200);
     });
-  // Clippings Carousel Navigation
-  var track = document.getElementById("clippings-track");
-  var btnPrev = document.querySelector(".clippings-controls .btn-prev");
-  var btnNext = document.querySelector(".clippings-controls .btn-next");
-
-  if (track && btnPrev && btnNext) {
-    btnPrev.addEventListener("click", function () {
-      var card = track.querySelector(".clipping-card");
-      if (card) {
-        var cardWidth = card.getBoundingClientRect().width;
-        var gap = 24; // matches 1.5rem gap (1.5 * 16px)
-        track.scrollBy({
-          left: -(cardWidth + gap),
-          behavior: "smooth"
-        });
-      }
-    });
-
-    btnNext.addEventListener("click", function () {
-      var card = track.querySelector(".clipping-card");
-      if (card) {
-        var cardWidth = card.getBoundingClientRect().width;
-        var gap = 24; // matches 1.5rem gap (1.5 * 16px)
-        track.scrollBy({
-          left: cardWidth + gap,
-          behavior: "smooth"
-        });
-      }
-    });
   }
+
+  // ===== Clippings Carousel =====
+  (function () {
+    var slides = document.querySelectorAll(".clip-slide");
+    var dots   = document.querySelectorAll(".clip-dot");
+    var btnPrev = document.querySelector(".clip-prev");
+    var btnNext = document.querySelector(".clip-next");
+    if (!slides.length) return;
+
+    var current = 0;
+    var autoTimer;
+
+    function goTo(idx) {
+      slides[current].classList.remove("active");
+      dots[current].classList.remove("active");
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add("active");
+      dots[current].classList.add("active");
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function () { goTo(current + 1); }, 5000);
+    }
+
+    if (btnPrev) btnPrev.addEventListener("click", function () { goTo(current - 1); startAuto(); });
+    if (btnNext) btnNext.addEventListener("click", function () { goTo(current + 1); startAuto(); });
+
+    dots.forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        goTo(parseInt(dot.getAttribute("data-index"), 10));
+        startAuto();
+      });
+    });
+
+    startAuto();
+  })();
+
 })();
+

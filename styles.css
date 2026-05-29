@@ -1812,171 +1812,173 @@ a:hover {
   display: block;
 }
 
-/* Hero Clippings Widget (Newspaper Style) */
-.hero-clippings-widget {
-  margin-left: auto;
-  max-width: 400px;
-  width: 100%;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
+/* ===== CLIPPINGS CAROUSEL SECTION ===== */
+.clippings-section {
+  background: #ffffff;
+  border-top: 1px solid #e8ecf0;
+  border-bottom: 1px solid #e8ecf0;
+  padding: 4rem 0;
 }
 
-.widget-header {
+.clippings-head {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 0.65rem;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
 }
 
-.widget-controls {
+.clippings-label {
+  flex: 1;
+}
+
+.clippings-eyebrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 0.6rem;
+}
+
+.clippings-label h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+.clippings-label p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+  max-width: 480px;
+}
+
+.clippings-nav {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.6rem;
+  flex-shrink: 0;
 }
 
-.widget-btn {
+.clip-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  font-weight: 700;
+  border: 2px solid #e2e8f0;
+  background: #fff;
+  color: #334155;
+  font-size: 1.3rem;
   cursor: pointer;
-  line-height: 1;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s ease;
+  font-weight: 700;
 }
 
-.widget-btn:hover {
+.clip-btn:hover {
   background: var(--coral);
-  color: #FFFFFF;
   border-color: var(--coral);
-  transform: scale(1.08);
+  color: #fff;
+  transform: scale(1.07);
 }
 
-.widget-btn:active {
+.clip-btn:active {
   transform: scale(0.95);
 }
 
-.widget-track {
+/* Track */
+.clippings-track-wrap {
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.clippings-track {
   width: 100%;
   position: relative;
 }
 
-/* Widget Card (News clipping style) */
-.widget-card {
+.clip-slide {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.45rem 1.55rem;
-  border-radius: 20px;
-  background: #FFFFFF;
-  border: 1px solid #e2e8f0;
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.25),
-    0 1px 3px rgba(0, 0, 0, 0.1);
-  min-height: 280px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.widget-card.active {
-  display: flex;
-  animation: widgetFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+.clip-slide.active {
+  display: block;
+  animation: clipFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes widgetFadeIn {
-  from {
-    opacity: 0.4;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes clipFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.widget-card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: #cbd5e1;
-  box-shadow: 
-    0 25px 45px rgba(0, 0, 0, 0.35),
-    0 10px 20px rgba(255, 122, 89, 0.06);
+.clip-img {
+  width: 100%;
+  display: block;
+  border-radius: 16px 16px 0 0;
+  object-fit: cover;
+  max-height: 520px;
 }
 
-.widget-card-header {
+.clip-caption {
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.85rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-radius: 0 0 16px 16px;
 }
 
-.widget-publisher-logo {
-  max-height: 22px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
-
-.widget-badge {
-  display: inline-block;
-  font-size: 0.6rem;
+.clip-tag {
+  font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #475569;
-  background: #f1f5f9;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  border: 1px solid #cbd5e1;
-}
-
-.widget-headline {
-  margin: 0 0 0.85rem;
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-  font-size: 1.12rem;
-  font-weight: 800;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  color: #0f172a;
-}
-
-.widget-text {
-  margin: 0 0 1.25rem;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #334155;
-  flex-grow: 1;
-}
-
-.widget-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  border-top: 1px solid #e2e8f0;
-  padding-top: 0.85rem;
-}
-
-.widget-artist {
-  font-weight: 800;
-  color: #1e293b;
-}
-
-.widget-link {
-  color: #64748b;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.widget-card:hover .widget-link {
+  letter-spacing: 0.08em;
   color: var(--coral);
 }
 
-/* Plan Deck Combos (using the same deck styles) */
+.clip-case {
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Dots */
+.clip-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.clip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.clip-dot.active {
+  background: var(--coral);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ===== END CLIPPINGS CAROUSEL ===== */
+
+/* Plan Deck Combos */
 .plan-deck-combos {
   display: grid;
   grid-template-columns: 1fr;
