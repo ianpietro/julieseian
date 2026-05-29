@@ -147,7 +147,7 @@
 
     function startAuto() {
       clearInterval(autoTimer);
-      autoTimer = setInterval(function () { goTo(current + 1); }, 5000);
+      autoTimer = setInterval(function () { goTo(current + 1); }, 9000);
     }
 
     if (btnPrev) btnPrev.addEventListener("click", function () { goTo(current - 1); startAuto(); });
