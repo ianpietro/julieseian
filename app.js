@@ -95,6 +95,17 @@
     });
   });
 
+  document.querySelectorAll('[data-target-tab]').forEach(function (el) {
+    el.addEventListener("click", function () {
+      var tab = el.getAttribute("data-target-tab");
+      if (tab) {
+        window.requestAnimationFrame(function () {
+          setPlanPanel(tab);
+        });
+      }
+    });
+  });
+
   var form = document.querySelector(".lead-form");
   if (form) {
     form.addEventListener("submit", function (e) {
