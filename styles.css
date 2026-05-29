@@ -624,20 +624,77 @@ a:hover {
 }
 
 .marquee-logo {
-  height: 48px;
-  max-width: 150px;
+  height: 40px;
+  max-width: 130px;
   object-fit: contain;
-  filter: grayscale(1) brightness(1.4) contrast(0.8) opacity(0.65);
-  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  filter: none; /* Colorido */
+  opacity: 0.2; /* Transparência de 20% (opacidade de 20%) */
+  transition: opacity 0.3s ease, transform 0.3s ease;
   flex-shrink: 0;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.5rem;
   margin: auto 0;
 }
 
 .marquee-logo:hover {
-  filter: none;
   opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Master Logos Grid Styling */
+.master-channels {
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+
+.master-title, .niche-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--coral);
+  margin-bottom: 1.25rem;
+  opacity: 0.85;
+}
+
+.master-logos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 3rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.75rem 2rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.master-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.master-logo-item:hover {
   transform: scale(1.08);
+}
+
+.master-logo-item img {
+  height: 48px;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+.niche-channels {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.niche-title {
+  margin-bottom: 1.5rem;
 }
 
 @keyframes marquee {
