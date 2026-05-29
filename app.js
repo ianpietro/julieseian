@@ -30,6 +30,7 @@
   var tabs = document.querySelectorAll(".plan-tab");
   var panelPacotes = document.getElementById("panel-pacotes");
   var panelB2b = document.getElementById("panel-b2b");
+  var panelCombos = document.getElementById("panel-combos");
 
   function setPlanPanel(panelId) {
     tabs.forEach(function (tab) {
@@ -38,13 +39,25 @@
       tab.classList.toggle("is-active", active);
       tab.setAttribute("aria-selected", active ? "true" : "false");
     });
-    if (panelPacotes && panelB2b) {
-      var showPacotes = panelId === "pacotes";
-      panelPacotes.classList.toggle("is-active", showPacotes);
-      panelPacotes.toggleAttribute("hidden", !showPacotes);
-      panelB2b.classList.toggle("is-active", !showPacotes);
-      panelB2b.toggleAttribute("hidden", showPacotes);
-    }
+
+    var panels = {
+      pacotes: panelPacotes,
+      b2b: panelB2b,
+      combos: panelCombos
+    };
+
+    Object.keys(panels).forEach(function (key) {
+      var panel = panels[key];
+      if (panel) {
+        var active = key === panelId;
+        panel.classList.toggle("is-active", active);
+        if (active) {
+          panel.removeAttribute("hidden");
+        } else {
+          panel.setAttribute("hidden", "");
+        }
+      }
+    });
   }
 
   tabs.forEach(function (tab) {
@@ -54,19 +67,30 @@
     });
   });
 
-  function openB2bFromHash() {
-    if (window.location.hash === "#b2b") {
+  function openPanelFromHash() {
+    var hash = window.location.hash;
+    if (hash === "#b2b") {
       setPlanPanel("b2b");
+    } else if (hash === "#combos") {
+      setPlanPanel("combos");
     }
   }
 
-  window.addEventListener("hashchange", openB2bFromHash);
-  openB2bFromHash();
+  window.addEventListener("hashchange", openPanelFromHash);
+  openPanelFromHash();
 
   document.querySelectorAll('a[href="#b2b"]').forEach(function (link) {
     link.addEventListener("click", function () {
       window.requestAnimationFrame(function () {
         setPlanPanel("b2b");
+      });
+    });
+  });
+
+  document.querySelectorAll('a[href="#combos"]').forEach(function (link) {
+    link.addEventListener("click", function () {
+      window.requestAnimationFrame(function () {
+        setPlanPanel("combos");
       });
     });
   });
