@@ -81,6 +81,93 @@
           <div class="hero-visual" aria-hidden="true">
             <div class="orb orb-a"></div>
             <div class="orb orb-b"></div>
+
+            <!-- Mini Clippings Card Slider (Newspaper Style) -->
+            <div class="hero-clippings-widget">
+              <div class="widget-header">
+                <span class="pill pill-live" style="background: rgba(255, 122, 89, 0.15); color: #ffcaab; border: 1px solid rgba(255, 122, 89, 0.35);">
+                  Matérias em Destaque
+                </span>
+                <div class="widget-controls">
+                  <button class="widget-btn btn-prev" aria-label="Anterior">‹</button>
+                  <button class="widget-btn btn-next" aria-label="Próximo">›</button>
+                </div>
+              </div>
+              
+              <div class="widget-track" id="widget-track">
+                <!-- Card 1: Terra -->
+                <article class="widget-card active">
+                  <div class="widget-card-header">
+                    <img src="assets/logo-terra.png" alt="Terra Logo" class="widget-publisher-logo" />
+                    <span class="widget-badge">Mídia Master</span>
+                  </div>
+                  <p class="widget-headline">“Julies lança novo single 'Fim de Tarde' e desponta como promessa do Reggae/Pop Nacional”</p>
+                  <p class="widget-text">O cantor Julies traz mais uma produção de altíssimo nível focado em streaming. O lançamento consolida sua presença no cenário da música pop nacional...</p>
+                  <div class="widget-card-footer">
+                    <span class="widget-artist">Caso: Julies</span>
+                    <span class="widget-link">Ver Matéria Original ↗</span>
+                  </div>
+                </article>
+
+                <!-- Card 2: R7 -->
+                <article class="widget-card">
+                  <div class="widget-card-header">
+                    <img src="assets/logo-r7.png" alt="R7 Logo" class="widget-publisher-logo" />
+                    <span class="widget-badge">Mídia Master</span>
+                  </div>
+                  <p class="widget-headline">“Cantor Martte consolida fusão de ritmos urbanos em novo projeto no Blog Backstage”</p>
+                  <p class="widget-text">O artista Martte foi o destaque do portal R7. O canal aponta o artista como um dos grandes nomes da nova cena independente paulistana...</p>
+                  <div class="widget-card-footer">
+                    <span class="widget-artist">Caso: Martte</span>
+                    <span class="widget-link">Ver Matéria Original ↗</span>
+                  </div>
+                </article>
+
+                <!-- Card 3: TMDQA -->
+                <article class="widget-card">
+                  <div class="widget-card-header">
+                    <img src="assets/logo-tmdqa.png" alt="TMDQA! Logo" class="widget-publisher-logo" />
+                    <span class="widget-badge">Canal Especializado</span>
+                  </div>
+                  <p class="widget-headline">“Raquel Boletti traz sensibilidade acústica em turnê e ganha destaque na mídia independente”</p>
+                  <p class="widget-text">O conceituado portal Tenho Mais Discos Que Amigos elogiou a sensibilidade e a entrega de Raquel Boletti na sua nova turnê acústica...</p>
+                  <div class="widget-card-footer">
+                    <span class="widget-artist">Caso: Raquel Boletti</span>
+                    <span class="widget-link">Ver Matéria Original ↗</span>
+                  </div>
+                </article>
+
+                <!-- Card 4: Estado de Minas -->
+                <article class="widget-card">
+                  <div class="widget-card-header">
+                    <img src="assets/logo-estadodeminas.png" alt="Estado de Minas Logo" class="widget-publisher-logo" />
+                    <span class="widget-badge">Grande Imprensa</span>
+                  </div>
+                  <p class="widget-headline">“Projeto 'Som no Sebo' resgata a paixão pelos discos de vinil e cultura física”</p>
+                  <p class="widget-text">Uma reportagem especial do jornal Estado de Minas cobriu a resistência e a força cultural do projeto 'Som no Sebo' no centro histórico...</p>
+                  <div class="widget-card-footer">
+                    <span class="widget-artist">Caso: Som no Sebo</span>
+                    <span class="widget-link">Ver Matéria Original ↗</span>
+                  </div>
+                </article>
+
+                <!-- Card 5: Ego Brazil -->
+                <article class="widget-card">
+                  <div class="widget-card-header">
+                    <img src="assets/logo-egobrazil.png" alt="Ego Brazil Logo" class="widget-publisher-logo" />
+                    <span class="widget-badge">Cultura & Fama</span>
+                  </div>
+                  <p class="widget-headline">“NS Operações amplia portfólio de ativações culturais e projeta expansão nacional”</p>
+                  <p class="widget-text">O influente portal Ego Brazil destacou o crescimento acelerado da NS Operações na distribuição de mídia e produção executiva de festivais...</p>
+                  <div class="widget-card-footer">
+                    <span class="widget-artist">Caso: NS Operações</span>
+                    <span class="widget-link">Ver Matéria Original ↗</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Flow Card -->
             <div class="glass-card">
               <div class="glass-row">
                 <span class="pill pill-live">Fluxo Integrado</span>
@@ -95,94 +182,6 @@
               </ol>
               <p class="glass-foot">Transparência total do briefing à publicação de mídia e inserção garantida nas playlists parceiras.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section clippings-section" id="destaques">
-        <div class="container">
-          <header class="clippings-header">
-            <div class="clippings-header-left">
-              <span class="eyebrow eyebrow-alt">Mídia & Clippings</span>
-              <h2>Publicações em Destaque</h2>
-              <p>Confira alguns recortes de matérias reais publicadas e impulsionadas para nossos artistas parceiros.</p>
-            </div>
-            <div class="clippings-controls">
-              <button class="carousel-btn btn-prev" aria-label="Anterior">←</button>
-              <button class="carousel-btn btn-next" aria-label="Próximo">→</button>
-            </div>
-          </header>
-
-          <div class="clippings-track" id="clippings-track">
-            <!-- Card 1: Terra -->
-            <article class="clipping-card">
-              <div class="clipping-card-header">
-                <img src="assets/logo-terra.png" alt="Terra Logo" class="clipping-publisher-logo" />
-                <span class="clipping-badge">Mídia Master</span>
-              </div>
-              <p class="clipping-headline">“Julies lança novo single 'Fim de Tarde' e desponta como promessa do Reggae/Pop Nacional”</p>
-              <p class="clipping-text">O cantor Julies traz mais uma produção de altíssimo nível focado em rádio e streaming. Com arranjo acústico marcante e letra reflexiva, o lançamento consolida sua presença no cenário da música pop nacional...</p>
-              <div class="clipping-card-footer">
-                <span class="clipping-artist">Caso: Julies</span>
-                <span class="clipping-link">Ver Matéria Original ↗</span>
-              </div>
-            </article>
-
-            <!-- Card 2: R7 -->
-            <article class="clipping-card">
-              <div class="clipping-card-header">
-                <img src="assets/logo-r7.png" alt="R7 Logo" class="clipping-publisher-logo" />
-                <span class="clipping-badge">Mídia Master</span>
-              </div>
-              <p class="clipping-headline">“Cantor Martte consolida fusão de ritmos urbanos em novo projeto no Blog Backstage”</p>
-              <p class="clipping-text">O artista Martte foi o destaque do portal R7 com o lançamento de seu novo projeto independente, que mescla MPB, R&B e música eletrônica. O canal aponta o artista como um dos grandes nomes da nova cena paulistana...</p>
-              <div class="clipping-card-footer">
-                <span class="clipping-artist">Caso: Martte</span>
-                <span class="clipping-link">Ver Matéria Original ↗</span>
-              </div>
-            </article>
-
-            <!-- Card 3: TMDQA -->
-            <article class="clipping-card">
-              <div class="clipping-card-header">
-                <img src="assets/logo-tmdqa.png" alt="TMDQA! Logo" class="clipping-publisher-logo" />
-                <span class="clipping-badge">Canal Especializado</span>
-              </div>
-              <p class="clipping-headline">“Raquel Boletti traz sensibilidade acústica em turnê e ganha destaque na mídia independente”</p>
-              <p class="clipping-text">O conceituado portal Tenho Mais Discos Que Amigos elogiou a sensibilidade e a entrega de Raquel Boletti na sua nova turnê acústica. O show traz regravações intimistas e faixas autorais que tocam profundamente o ouvinte...</p>
-              <div class="clipping-card-footer">
-                <span class="clipping-artist">Caso: Raquel Boletti</span>
-                <span class="clipping-link">Ver Matéria Original ↗</span>
-              </div>
-            </article>
-
-            <!-- Card 4: Estado de Minas -->
-            <article class="clipping-card">
-              <div class="clipping-card-header">
-                <img src="assets/logo-estadodeminas.png" alt="Estado de Minas Logo" class="clipping-publisher-logo" />
-                <span class="clipping-badge">Grande Imprensa</span>
-              </div>
-              <p class="clipping-headline">“Projeto 'Som no Sebo' resgata a paixão pelos discos de vinil e cultura física”</p>
-              <p class="clipping-text">Uma reportagem especial do jornal Estado de Minas cobriu a resistência e a força cultural do projeto 'Som no Sebo'. Em tempos digitais, a curadoria de música física no centro histórico resgata memórias de várias gerações...</p>
-              <div class="clipping-card-footer">
-                <span class="clipping-artist">Caso: Som no Sebo</span>
-                <span class="clipping-link">Ver Matéria Original ↗</span>
-              </div>
-            </article>
-
-            <!-- Card 5: Ego Brazil -->
-            <article class="clipping-card">
-              <div class="clipping-card-header">
-                <img src="assets/logo-egobrazil.png" alt="Ego Brazil Logo" class="clipping-publisher-logo" />
-                <span class="clipping-badge">Cultura & Fama</span>
-              </div>
-              <p class="clipping-headline">“NS Operações amplia portfólio de ativações culturais e projeta expansão nacional”</p>
-              <p class="clipping-text">O influente portal Ego Brazil destacou o crescimento acelerado da NS Operações na distribuição de mídia e produção executiva de festivais, consolidando parcerias de alto valor estratégico e novos formatos comerciais...</p>
-              <div class="clipping-card-footer">
-                <span class="clipping-artist">Caso: NS Operações</span>
-                <span class="clipping-link">Ver Matéria Original ↗</span>
-              </div>
-            </article>
           </div>
         </div>
       </section>
