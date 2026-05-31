@@ -421,7 +421,8 @@ a:hover {
 @media (min-width: 960px) {
   .flow-card-compact {
     flex: none;
-    height: 128px; /* Perfectly aligned to the hero-stats cards height */
+    height: auto;
+    min-height: 122px; /* Adjusted to align with hero-stats cards */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -978,6 +979,11 @@ a:hover {
   height: 56px;
   max-width: 180px;
   object-fit: contain;
+}
+
+.logo-invert {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
 .niche-channels {
