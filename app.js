@@ -163,5 +163,42 @@
     startAuto();
   })();
 
+  // ===== Playlists Interactive Switcher =====
+  (function () {
+    var playlistTabs = document.querySelectorAll(".playlist-selector-tab");
+    var frontPhoneImg = document.querySelector(".phone-front .phone-screenshot-img");
+    var backPhoneImg = document.querySelector(".phone-back .phone-screenshot-img");
+    if (!playlistTabs.length || !frontPhoneImg || !backPhoneImg) return;
+
+    playlistTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        playlistTabs.forEach(function (t) {
+          t.classList.remove("is-active");
+        });
+        tab.classList.add("is-active");
+
+        var playlistIndex = tab.getAttribute("data-playlist");
+
+        frontPhoneImg.style.opacity = "0";
+
+        setTimeout(function () {
+          frontPhoneImg.onload = function () {
+            frontPhoneImg.style.opacity = "1";
+          };
+          frontPhoneImg.src = "assets/playlist_print_" + playlistIndex + ".png";
+        }, 200);
+
+        var nextIndex = (parseInt(playlistIndex, 10) % 7) + 1;
+        backPhoneImg.style.opacity = "0";
+        setTimeout(function () {
+          backPhoneImg.onload = function () {
+            backPhoneImg.style.opacity = "1";
+          };
+          backPhoneImg.src = "assets/playlist_print_" + nextIndex + ".png";
+        }, 250);
+      });
+    });
+  })();
+
 })();
 
