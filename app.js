@@ -73,6 +73,8 @@
       setPlanPanel("b2b");
     } else if (hash === "#combos") {
       setPlanPanel("combos");
+    } else {
+      setPlanPanel("combos");
     }
   }
 
