@@ -202,5 +202,225 @@
     });
   })();
 
-})();
 
+  // ===== CHECKOUT MODAL SYSTEM =====
+  (function () {
+    var modal = document.getElementById("checkout-modal");
+    var closeBtn = document.getElementById("checkout-close");
+    var successCloseBtn = document.getElementById("btn-success-close");
+    
+    var stepForm = document.getElementById("checkout-step-form");
+    var stepSuccess = document.getElementById("checkout-step-success");
+    
+    var planNameEls = document.querySelectorAll("#checkout-plan-name, #checkout-summary-item, #success-plan-name");
+    var planPriceEl = document.getElementById("checkout-summary-price");
+    
+    var tabs = document.querySelectorAll(".checkout-tab");
+    var panels = document.querySelectorAll(".checkout-panel");
+    
+    var copyBtn = document.getElementById("btn-copy-pix");
+    var pixInput = document.getElementById("pix-key-input");
+    var pixSubmitBtn = document.getElementById("btn-submit-pix");
+    
+    var cardForm = document.getElementById("card-checkout-form");
+    var visualCard = document.getElementById("visual-card");
+    
+    // Form Inputs
+    var cardNumInput = document.getElementById("card-number");
+    var cardNameInput = document.getElementById("card-name");
+    var cardExpInput = document.getElementById("card-expiry");
+    var cardCvvInput = document.getElementById("card-cvv");
+    
+    // Display elements on credit card
+    var displayNum = document.getElementById("display-number");
+    var displayName = document.getElementById("display-name");
+    var displayExp = document.getElementById("display-expiry");
+    var displayCvv = document.getElementById("display-cvv");
+
+    if (!modal) return;
+
+    // Open checkout modal on trigger click
+    document.querySelectorAll(".checkout-trigger").forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        var planName = trigger.getAttribute("data-plan");
+        var planPrice = trigger.getAttribute("data-price");
+        
+        // Populate plan details
+        planNameEls.forEach(function (el) {
+          el.textContent = planName;
+        });
+        if (planPriceEl) {
+          planPriceEl.textContent = "R$ " + planPrice;
+        }
+        
+        // Reset states
+        stepForm.removeAttribute("hidden");
+        stepSuccess.setAttribute("hidden", "");
+        modal.classList.add("is-active");
+        modal.setAttribute("aria-hidden", "false");
+        
+        // Set default active tab (Pix)
+        setActiveTab("tab-pix");
+      });
+    });
+
+    // Close Modal
+    function closeModal() {
+      modal.classList.remove("is-active");
+      modal.setAttribute("aria-hidden", "true");
+      if (cardForm) cardForm.reset();
+      resetCardDisplay();
+    }
+
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    if (successCloseBtn) successCloseBtn.addEventListener("click", closeModal);
+    
+    // Close on overlay click
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Tab Switching Logic
+    function setActiveTab(tabId) {
+      tabs.forEach(function (tab) {
+        var isActive = tab.id === tabId;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+      
+      var panelId = tabId === "tab-pix" ? "panel-pix" : "panel-card";
+      panels.forEach(function (panel) {
+        var isTarget = panel.id === panelId;
+        panel.classList.toggle("is-active", isTarget);
+        if (isTarget) {
+          panel.removeAttribute("hidden");
+        } else {
+          panel.setAttribute("hidden", "");
+        }
+      });
+      
+      // Flip back card if we switch tabs
+      if (visualCard) visualCard.classList.remove("flipped");
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        setActiveTab(tab.id);
+      });
+    });
+
+    // Copy Pix key
+    if (copyBtn && pixInput) {
+      copyBtn.addEventListener("click", function () {
+        pixInput.select();
+        pixInput.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(pixInput.value).then(function () {
+          var originalText = copyBtn.textContent;
+          copyBtn.textContent = "Copiado!";
+          copyBtn.style.background = "#4bb543";
+          setTimeout(function () {
+            copyBtn.textContent = originalText;
+            copyBtn.style.background = "";
+          }, 1500);
+        });
+      });
+    }
+
+    // Success transition
+    function triggerSuccess() {
+      stepForm.setAttribute("hidden", "");
+      stepSuccess.removeAttribute("hidden");
+    }
+
+    // Pix Submit simulation
+    if (pixSubmitBtn) {
+      pixSubmitBtn.addEventListener("click", function () {
+        var originalText = pixSubmitBtn.textContent;
+        pixSubmitBtn.textContent = "Confirmando pagamento...";
+        pixSubmitBtn.disabled = true;
+        setTimeout(function () {
+          pixSubmitBtn.textContent = originalText;
+          pixSubmitBtn.disabled = false;
+          triggerSuccess();
+        }, 1500);
+      });
+    }
+
+    // Credit Card Visual Interactive Form
+    if (cardNumInput) {
+      cardNumInput.addEventListener("input", function (e) {
+        var value = e.target.value.replace(/\D/g, "");
+        // Add spaces every 4 digits
+        var formatted = value.match(/.{1,4}/g);
+        e.target.value = formatted ? formatted.join(" ") : "";
+        displayNum.textContent = e.target.value || "•••• •••• •••• ••••";
+      });
+    }
+
+    if (cardNameInput) {
+      cardNameInput.addEventListener("input", function (e) {
+        displayName.textContent = e.target.value.toUpperCase() || "NOME COMPLETO";
+      });
+    }
+
+    if (cardExpInput) {
+      cardExpInput.addEventListener("input", function (e) {
+        var value = e.target.value.replace(/\D/g, "");
+        if (value.length > 2) {
+          e.target.value = value.substring(0, 2) + "/" + value.substring(2, 4);
+        } else {
+          e.target.value = value;
+        }
+        displayExp.textContent = e.target.value || "MM/AA";
+      });
+    }
+
+    if (cardCvvInput) {
+      cardCvvInput.addEventListener("input", function (e) {
+        var value = e.target.value.replace(/\D/g, "");
+        e.target.value = value;
+        displayCvv.textContent = value || "•••";
+      });
+      
+      // Flip card to CVV back on focus
+      cardCvvInput.addEventListener("focus", function () {
+        if (visualCard) visualCard.classList.add("flipped");
+      });
+      
+      cardCvvInput.addEventListener("blur", function () {
+        if (visualCard) visualCard.classList.remove("flipped");
+      });
+    }
+
+    function resetCardDisplay() {
+      if (displayNum) displayNum.textContent = "•••• •••• •••• ••••";
+      if (displayName) displayName.textContent = "NOME COMPLETO";
+      if (displayExp) displayExp.textContent = "MM/AA";
+      if (displayCvv) displayCvv.textContent = "•••";
+      if (visualCard) visualCard.classList.remove("flipped");
+    }
+
+    // Card submit simulation
+    if (cardForm) {
+      cardForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var submitBtn = document.getElementById("btn-submit-card");
+        var originalText = submitBtn ? submitBtn.textContent : "";
+        if (submitBtn) {
+          submitBtn.textContent = "Processando pagamento...";
+          submitBtn.disabled = true;
+        }
+        setTimeout(function () {
+          if (submitBtn) {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+          triggerSuccess();
+        }, 1800);
+      });
+    }
+  })();
+
+})();
