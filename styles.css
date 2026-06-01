@@ -2879,3 +2879,68 @@ a:hover {
 .success-details li strong {
   color: var(--text);
 }
+
+
+/* ==========================================
+   AMBIENT BACKGROUND ORBS & SCROLL REVEAL STYLES
+   ========================================== */
+
+/* Ambient background float animations */
+@keyframes floatOrbA {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -45px) scale(1.08); }
+  66% { transform: translate(-25px, 25px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes floatOrbB {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-45px, 35px) scale(1.12); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes floatOrbC {
+  0% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(45px, 30px) scale(1.05); }
+  80% { transform: translate(-35px, -25px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.orb-a {
+  animation: floatOrbA 24s ease-in-out infinite !important;
+}
+
+.orb-b {
+  animation: floatOrbB 30s ease-in-out infinite alternate !important;
+}
+
+.orb-c {
+  animation: floatOrbC 28s ease-in-out infinite !important;
+}
+
+.orb-d {
+  animation: floatOrbA 36s ease-in-out infinite alternate !important;
+}
+
+.orb-e {
+  animation: floatOrbB 26s ease-in-out infinite !important;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.4s; }

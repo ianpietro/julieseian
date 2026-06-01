@@ -423,4 +423,31 @@
     }
   })();
 
+
+  // ===== SCROLL REVEAL =====
+  (function () {
+    var reveals = document.querySelectorAll(".reveal");
+    if (!reveals.length) return;
+
+    var observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.12
+    };
+
+    var observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          // Stop observing once animated
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    reveals.forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
+
 })();
