@@ -2353,17 +2353,38 @@ a:hover {
 }
 
 .clip-tag {
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   color: var(--coral);
+  background: rgba(232, 78, 54, 0.06);
+  border: 1px solid rgba(232, 78, 54, 0.25);
+  padding: 0.28rem 0.7rem;
+  border-radius: 99px;
 }
 
 .clip-case {
-  font-size: 0.85rem;
-  color: #475569;
-  font-weight: 500;
+  font-size: 0.82rem;
+  color: #334155;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.clip-case::before {
+  content: "✓";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e6f6e6;
+  color: #34a853;
+  font-size: 0.65rem;
+  font-weight: 900;
 }
 
 /* Dots */
