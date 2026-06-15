@@ -128,6 +128,26 @@
     });
   }
 
+  var whatsappInput = document.getElementById("whatsapp");
+  if (whatsappInput) {
+    whatsappInput.addEventListener("input", function (e) {
+      var value = e.target.value.replace(/\D/g, "");
+      if (value.length > 11) value = value.slice(0, 11);
+      
+      var formatted = "";
+      if (value.length > 0) {
+        formatted += "(" + value.slice(0, 2);
+      }
+      if (value.length > 2) {
+        formatted += ") " + value.slice(2, 7);
+      }
+      if (value.length > 7) {
+        formatted += "-" + value.slice(7, 11);
+      }
+      e.target.value = formatted;
+    });
+  }
+
   // ===== Clippings Carousel =====
   (function () {
     var slides = document.querySelectorAll(".clip-slide");
