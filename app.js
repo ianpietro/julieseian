@@ -188,9 +188,25 @@
   // ===== Playlists Interactive Switcher =====
   (function () {
     var playlistTabs = document.querySelectorAll(".playlist-selector-tab");
-    var frontPhoneImg = document.querySelector(".phone-front .phone-screenshot-img");
-    var backPhoneImg = document.querySelector(".phone-back .phone-screenshot-img");
-    if (!playlistTabs.length || !frontPhoneImg || !backPhoneImg) return;
+    var frontLeft   = document.getElementById("phone-front-left");
+    var backLeft    = document.getElementById("phone-back-left");
+    var frontCenter = document.getElementById("phone-front-center");
+    var backCenter  = document.getElementById("phone-back-center");
+    var frontRight  = document.getElementById("phone-front-right");
+    var backRight   = document.getElementById("phone-back-right");
+
+    if (!playlistTabs.length || !frontCenter || !backCenter) return;
+
+    function updatePhoneImage(imgEl, index, delay) {
+      if (!imgEl) return;
+      imgEl.style.opacity = "0";
+      setTimeout(function () {
+        imgEl.onload = function () {
+          imgEl.style.opacity = "1";
+        };
+        imgEl.src = "assets/playlist_print_" + index + ".png?v=3";
+      }, delay);
+    }
 
     playlistTabs.forEach(function (tab) {
       tab.addEventListener("click", function () {
@@ -199,25 +215,29 @@
         });
         tab.classList.add("is-active");
 
-        var playlistIndex = tab.getAttribute("data-playlist");
+        var idx = parseInt(tab.getAttribute("data-playlist"), 10);
 
-        frontPhoneImg.style.opacity = "0";
+        // Calculate sliding window indices (1 to 10 loop)
+        var g2_front = idx;
+        var g2_back  = (idx % 10) + 1;
 
-        setTimeout(function () {
-          frontPhoneImg.onload = function () {
-            frontPhoneImg.style.opacity = "1";
-          };
-          frontPhoneImg.src = "assets/playlist_print_" + playlistIndex + ".png";
-        }, 200);
+        var g1_front = ((idx - 3 + 10) % 10) + 1;
+        var g1_back  = ((idx - 2 + 10) % 10) + 1;
 
-        var nextIndex = (parseInt(playlistIndex, 10) % 7) + 1;
-        backPhoneImg.style.opacity = "0";
-        setTimeout(function () {
-          backPhoneImg.onload = function () {
-            backPhoneImg.style.opacity = "1";
-          };
-          backPhoneImg.src = "assets/playlist_print_" + nextIndex + ".png";
-        }, 250);
+        var g3_front = ((idx + 1) % 10) + 1;
+        var g3_back  = ((idx + 2) % 10) + 1;
+
+        // Group 1 (Left) - slightly staggered delays
+        updatePhoneImage(frontLeft, g1_front, 150);
+        updatePhoneImage(backLeft, g1_back, 200);
+
+        // Group 2 (Center)
+        updatePhoneImage(frontCenter, g2_front, 200);
+        updatePhoneImage(backCenter, g2_back, 250);
+
+        // Group 3 (Right)
+        updatePhoneImage(frontRight, g3_front, 250);
+        updatePhoneImage(backRight, g3_back, 300);
       });
     });
   })();
